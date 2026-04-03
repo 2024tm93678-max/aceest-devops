@@ -6,21 +6,21 @@
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)  
-2. [Tech Stack](#tech-stack)  
-3. [Project Structure](#project-structure)  
-4. [Prerequisites](#prerequisites)  
-5. [Complete Setup Guide (Step-by-Step)](#complete-setup-guide-step-by-step)  
-6. [Running the Application](#running-the-application)  
-7. [Running Tests & Linting](#running-tests--linting)  
-8. [Docker – Build, Run & Test](#docker--build-run--test)  
-9. [Git – Version Control Workflow](#git--version-control-workflow)  
-10. [CI/CD – GitHub Actions](#cicd--github-actions)  
-11. [CI/CD – Jenkins Integration](#cicd--jenkins-integration)  
-12. [API Endpoints & Usage Examples](#api-endpoints--usage-examples)  
-13. [Important Commands Cheat Sheet](#important-commands-cheat-sheet)  
-14. [Troubleshooting](#troubleshooting)  
-15. [Version History](#version-history)  
+1. [Project Overview](#project-overview)
+2. [Tech Stack](#tech-stack)
+3. [Project Structure](#project-structure)
+4. [Prerequisites](#prerequisites)
+5. [Complete Setup Guide (Step-by-Step)](#complete-setup-guide-step-by-step)
+6. [Running the Application](#running-the-application)
+7. [Running Tests &amp; Linting](#running-tests--linting)
+8. [Docker – Build, Run &amp; Test](#docker--build-run--test)
+9. [Git – Version Control Workflow](#git--version-control-workflow)
+10. [CI/CD – GitHub Actions](#cicd--github-actions)
+11. [CI/CD – Jenkins Integration](#cicd--jenkins-integration)
+12. [API Endpoints &amp; Usage Examples](#api-endpoints--usage-examples)
+13. [Important Commands Cheat Sheet](#important-commands-cheat-sheet)
+14. [Troubleshooting](#troubleshooting)
+15. [Version History](#version-history)
 
 ---
 
@@ -28,25 +28,25 @@
 
 ACEest Fitness & Gym is a rapidly scaling startup. This repository contains the **Flask web application** and the complete **DevOps pipeline** infrastructure that ensures:
 
-- ✅ Code quality via linting (flake8)  
-- ✅ Functional correctness via automated tests (pytest)  
-- ✅ Environment consistency via containerisation (Docker)  
-- ✅ Continuous Integration & Delivery via GitHub Actions and Jenkins  
+- ✅ Code quality via linting (flake8)
+- ✅ Functional correctness via automated tests (pytest)
+- ✅ Environment consistency via containerisation (Docker)
+- ✅ Continuous Integration & Delivery via GitHub Actions and Jenkins
 
 ---
 
 ## Tech Stack
 
-| Layer              | Technology           |
-| ------------------ | -------------------- |
-| **Language**       | Python 3.9+          |
-| **Framework**      | Flask 3.0            |
-| **Testing**        | Pytest 8.2           |
-| **Linting**        | Flake8 7.1           |
-| **Containerisation** | Docker (python:3.9-slim) |
-| **WSGI Server**    | Gunicorn 22.0        |
-| **Package Manager** | uv (local) / pip (CI/CD & Docker) |
-| **CI/CD**          | GitHub Actions, Jenkins |
+| Layer                      | Technology                        |
+| -------------------------- | --------------------------------- |
+| **Language**         | Python 3.9+                       |
+| **Framework**        | Flask 3.0                         |
+| **Testing**          | Pytest 8.2                        |
+| **Linting**          | Flake8 7.1                        |
+| **Containerisation** | Docker (python:3.9-slim)          |
+| **WSGI Server**      | Gunicorn 22.0                     |
+| **Package Manager**  | uv (local) / pip (CI/CD & Docker) |
+| **CI/CD**            | GitHub Actions, Jenkins           |
 
 ---
 
@@ -73,13 +73,13 @@ aceest-project/
 
 Before you begin, make sure you have the following installed:
 
-| Tool | Purpose | Install |
-|------|---------|---------|
-| **Python 3.9+** | Runtime | [python.org](https://www.python.org/downloads/) or `brew install python` |
-| **uv** | Fast Python package manager (local dev) | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
-| **Docker Desktop** | Containerisation | [docker.com](https://www.docker.com/products/docker-desktop/) |
-| **Git** | Version control | `brew install git` or [git-scm.com](https://git-scm.com/) |
-| **curl** | API testing from terminal | Pre-installed on macOS/Linux |
+| Tool                     | Purpose                                 | Install                                                                 |
+| ------------------------ | --------------------------------------- | ----------------------------------------------------------------------- |
+| **Python 3.9+**    | Runtime                                 | [python.org](https://www.python.org/downloads/) or `brew install python` |
+| **uv**             | Fast Python package manager (local dev) | `curl -LsSf https://astral.sh/uv/install.sh \| sh`                     |
+| **Docker Desktop** | Containerisation                        | [docker.com](https://www.docker.com/products/docker-desktop/)              |
+| **Git**            | Version control                         | `brew install git` or [git-scm.com](https://git-scm.com/)                |
+| **curl**           | API testing from terminal               | Pre-installed on macOS/Linux                                            |
 
 ### Verify installations
 
@@ -168,6 +168,7 @@ curl http://127.0.0.1:5001/
 ```
 
 Expected response:
+
 ```json
 {
   "endpoints": ["/members", "/classes", "/workouts", "/bmi", "/calories", "/about"],
@@ -349,8 +350,8 @@ Every **push** or **pull_request** to the `main` branch automatically triggers t
 └──────────────┘     └──────────────┘     └──────────────┘
 ```
 
-1. **Lint** – Runs `flake8` to catch syntax errors and code-quality issues.  
-2. **Test** – Executes the full `pytest` suite; the pipeline fails if any test fails.  
+1. **Lint** – Runs `flake8` to catch syntax errors and code-quality issues.
+2. **Test** – Executes the full `pytest` suite; the pipeline fails if any test fails.
 3. **Docker** – Builds the Docker image and performs a smoke test (starts the container and verifies a `200 OK` response from `/`).
 
 ### Re-run a Failed Pipeline
@@ -370,31 +371,31 @@ A `Jenkinsfile` (declarative pipeline) is included for Jenkins-based builds. Unl
 
 The screenshot below shows a successful Jenkins pipeline run (Build #3) for this project:
 
-![Jenkins Build Success](docs/jenkins-build-success.png)
+![jenkins run](jenkins_run.png)
 
 All stages completed successfully:
 
-| Stage | Time | Status |
-|-------|------|--------|
-| **Checkout SCM** | 0.48s | ✅ Passed |
-| **Checkout** | 0.34s | ✅ Passed |
-| **Setup Python Environment** | 3s | ✅ Passed |
-| **Lint** | 0.28s | ✅ Passed |
-| **Test** | 0.28s | ✅ Passed |
-| **Docker Build** | 0.31s | ⏭️ Skipped (Docker not available inside Jenkins container) |
-| **Post Actions** | 31ms | ✅ Workspace cleaned |
+| Stage                              | Time  | Status                                                       |
+| ---------------------------------- | ----- | ------------------------------------------------------------ |
+| **Checkout SCM**             | 0.48s | ✅ Passed                                                    |
+| **Checkout**                 | 0.34s | ✅ Passed                                                    |
+| **Setup Python Environment** | 3s    | ✅ Passed                                                    |
+| **Lint**                     | 0.28s | ✅ Passed                                                    |
+| **Test**                     | 0.28s | ✅ Passed                                                    |
+| **Docker Build**             | 0.31s | ⏭️ Skipped (Docker not available inside Jenkins container) |
+| **Post Actions**             | 31ms  | ✅ Workspace cleaned                                         |
 
 > **Note:** The Docker Build stage is conditionally skipped when Docker is not installed inside the Jenkins container. Docker image building is handled by **GitHub Actions** and verified locally.
 
 ### Pipeline Stages
 
-| Stage | Description |
-|-------|-------------|
-| **Checkout** | Pulls the latest code from the connected GitHub repo |
+| Stage                              | Description                                                 |
+| ---------------------------------- | ----------------------------------------------------------- |
+| **Checkout**                 | Pulls the latest code from the connected GitHub repo        |
 | **Setup Python Environment** | Creates a Python venv and installs all dependencies via pip |
-| **Lint** | Runs `flake8` static analysis for syntax errors |
-| **Test** | Runs the full `pytest` suite (42 tests) |
-| **Docker Build** | Builds the Docker image (skipped if Docker is unavailable) |
+| **Lint**                     | Runs `flake8` static analysis for syntax errors           |
+| **Test**                     | Runs the full `pytest` suite (42 tests)                   |
+| **Docker Build**             | Builds the Docker image (skipped if Docker is unavailable)  |
 
 ### What We Did – Step by Step
 
@@ -414,10 +415,10 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 #### 3. Configured Jenkins (in browser at http://localhost:8080)
 
-1. Pasted the admin password  
-2. Clicked **Install suggested plugins** (waited for installation)  
-3. Created an admin user  
-4. Accepted the default Jenkins URL  
+1. Pasted the admin password
+2. Clicked **Install suggested plugins** (waited for installation)
+3. Created an admin user
+4. Accepted the default Jenkins URL
 
 #### 4. Installed Python inside the Jenkins container
 
@@ -430,12 +431,12 @@ docker exec -u root jenkins bash -c \
 
 #### 5. Created the Pipeline Job
 
-1. Dashboard → **New Item** → named it `aceest-fitness-gym` → selected **Pipeline** → OK  
-2. Under **Pipeline → Definition**, selected **Pipeline script from SCM**  
-3. Set **SCM** to **Git**  
-4. Entered repo URL: `https://github.com/ShreehariA/aceest-fitness-gym.git`  
-5. Set **Branch** to `*/main`  
-6. Clicked **Save** → **Build Now**  
+1. Dashboard → **New Item** → named it `aceest-fitness-gym` → selected **Pipeline** → OK
+2. Under **Pipeline → Definition**, selected **Pipeline script from SCM**
+3. Set **SCM** to **Git**
+4. Entered repo URL: `https://github.com/ShreehariA/aceest-fitness-gym.git`
+5. Set **Branch** to `*/main`
+6. Clicked **Save** → **Build Now**
 
 #### 6. Build Result
 
@@ -455,21 +456,21 @@ docker volume rm jenkins_home
 
 ### All Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/` | Welcome page & available endpoints |
-| `GET` | `/about` | Application information |
-| `GET` | `/members` | List all members |
-| `POST` | `/members` | Register a new member |
-| `GET` | `/members/<id>` | Get member by ID |
-| `PUT` | `/members/<id>` | Update a member |
-| `DELETE` | `/members/<id>` | Remove a member |
-| `GET` | `/classes` | List fitness classes |
-| `GET` | `/classes/<id>` | Get class by ID |
-| `GET` | `/workouts` | List all workouts |
-| `POST` | `/workouts` | Log a new workout |
-| `POST` | `/bmi` | Calculate BMI |
-| `POST` | `/calories` | Estimate daily caloric needs |
+| Method     | Endpoint          | Description                        |
+| ---------- | ----------------- | ---------------------------------- |
+| `GET`    | `/`             | Welcome page & available endpoints |
+| `GET`    | `/about`        | Application information            |
+| `GET`    | `/members`      | List all members                   |
+| `POST`   | `/members`      | Register a new member              |
+| `GET`    | `/members/<id>` | Get member by ID                   |
+| `PUT`    | `/members/<id>` | Update a member                    |
+| `DELETE` | `/members/<id>` | Remove a member                    |
+| `GET`    | `/classes`      | List fitness classes               |
+| `GET`    | `/classes/<id>` | Get class by ID                    |
+| `GET`    | `/workouts`     | List all workouts                  |
+| `POST`   | `/workouts`     | Log a new workout                  |
+| `POST`   | `/bmi`          | Calculate BMI                      |
+| `POST`   | `/calories`     | Estimate daily caloric needs       |
 
 ### Example Requests
 
@@ -562,6 +563,7 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ### Port 5000 already in use (macOS)
 
 macOS uses port 5000 for AirPlay Receiver. Solutions:
+
 ```bash
 # Option 1: Use a different port
 uv run flask run --port 5001
@@ -576,6 +578,7 @@ lsof -ti:5000 | xargs kill -9
 ### `python: command not found`
 
 Use `python3` instead of `python`, or use `uv run` which handles it automatically:
+
 ```bash
 uv run python app.py        # Works without activating venv
 uv run flask run --port 5001 # Works without activating venv
@@ -588,6 +591,7 @@ The `dict | None` type hint syntax requires Python 3.10+. The app uses `from __f
 ### `ModuleNotFoundError: No module named 'app'`
 
 Make sure you're inside the `aceest-fitness-gym/` directory:
+
 ```bash
 cd aceest-fitness-gym
 uv run flask run --port 5001
@@ -596,6 +600,7 @@ uv run flask run --port 5001
 ### Tests fail with `404` on member operations
 
 Ensure the `reset_data` fixture in `test_app.py` resets the ID counters:
+
 ```python
 app_module._next_member_id = 1
 app_module._next_workout_id = 1
@@ -603,27 +608,27 @@ app_module._next_workout_id = 1
 
 ### GitHub Actions pipeline fails
 
-1. Go to https://github.com/ShreehariA/aceest-fitness-gym/actions  
-2. Click the failed run → expand the failed step  
-3. Read the error logs and fix locally  
-4. Push the fix: `git add . && git commit -m "fix: ..." && git push`  
+1. Go to https://github.com/ShreehariA/aceest-fitness-gym/actions
+2. Click the failed run → expand the failed step
+3. Read the error logs and fix locally
+4. Push the fix: `git add . && git commit -m "fix: ..." && git push`
 
 ---
 
 ## Version History
 
-| Version | Highlights |
-|---------|-----------|
-| 1.0 | Initial fitness tracker script |
-| 1.1 | Added BMI and calorie calculations |
-| 1.1.2 | Bug fixes, improved input validation |
-| 2.0.1 | Introduced SQLite database layer |
-| 2.1.2 | Added workout logging module |
-| 2.2.1 | Membership billing & status tracking |
-| 2.2.4 | PDF report generation |
-| 3.0.1 | Migrated to Flask web application |
-| 3.1.2 | Full REST API with CRUD for members |
-| 3.2.4 | Docker + CI/CD pipeline (current) |
+| Version | Highlights                           |
+| ------- | ------------------------------------ |
+| 1.0     | Initial fitness tracker script       |
+| 1.1     | Added BMI and calorie calculations   |
+| 1.1.2   | Bug fixes, improved input validation |
+| 2.0.1   | Introduced SQLite database layer     |
+| 2.1.2   | Added workout logging module         |
+| 2.2.1   | Membership billing & status tracking |
+| 2.2.4   | PDF report generation                |
+| 3.0.1   | Migrated to Flask web application    |
+| 3.1.2   | Full REST API with CRUD for members  |
+| 3.2.4   | Docker + CI/CD pipeline (current)    |
 
 ---
 
