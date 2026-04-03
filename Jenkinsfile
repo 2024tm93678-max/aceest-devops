@@ -54,6 +54,11 @@ pipeline {
         }
 
         stage('Docker Build') {
+            when {
+                expression {
+                    return sh(script: 'which docker', returnStatus: true) == 0
+                }
+            }
             steps {
                 echo '🐳 Building Docker image...'
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
